@@ -1,0 +1,17 @@
+
+FROM mysql-installed
+
+MAINTAINER Shivam Patel
+
+COPY       mysql.script /
+COPY       script  /
+RUN        service mysql start	\
+           &&  chmod +x /script \
+           &&  /script \
+	   && service mysql restart
+		
+		
+EXPOSE 3306
+
+
+

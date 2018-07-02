@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+    <title>IT 640 </title>
+  </head>
+
+<body style="background-color:powderblue;"><center><br><h1>name : Shivam Patel</h1><br><h2>welcome to IT
+640 project.</h2><br><center>
+<br><center><button type="button" onclick="myFun()"> show names </button></center><br>
+<center><div id="box"></div></center><br>
+</body>
+</html>
+<script>
+function myFun(){
+
+var request = new XMLHttpRequest();
+        request.open("POST","my.php",true);
+        request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+         request.onreadystatechange = function ()
+        {
+                if ((this.readyState == 4)&&(this.status == 200))
+                {
+                        HandleResponse(this.responseText);
+                }
+        }
+        request.send("type=show");
+}
+
+function HandleResponse(response)
+{
+        var text = JSON.parse(response);        
+        var html = "<table border='1|1'>";
+        html+="<tr>";
+        html+="<th>"+"firstname"+"</th>";
+        html+="<th>"+"lastname"+"</th>" ;
+        html+="</tr>";
+    for (var i = 0; i < text.length; i++) {
+        html+="<tr>";
+        html+="<td>"+text[i].firstname+"</td>";
+        html+="<td>"+text[i].lastname+"</td>";
+        html+="</tr>";
+    }
+    html+="</table>";
+document.getElementById("box").innerHTML = html;
+ }
+                                 
+</script>    
